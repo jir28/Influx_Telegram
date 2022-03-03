@@ -4,6 +4,7 @@ from influxdb_client.client.write_api import SYNCHRONOUS
 import time
 import telegram
 
+
 def send_data_idb(totality_lit, time_s):
     bucket = "Raspi"
     org = "jirs28"
