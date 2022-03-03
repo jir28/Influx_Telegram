@@ -41,4 +41,6 @@ if __name__ == '__main__':
     user_id = '@RgaderaBot'
 
     bot = telegram.Bot(token=api_key)
-    bot.send_message(chat_id=user_id, text='USP-Python has started up!')
+    bot.send_message(chat_id=user_id, text='Litros: '+str(totlit))
+    bot.send_message(chat_id=user_id, text='Tiempo: ' + str(timeshower))
+    bot.send_message(chat_id=user_id, text='Temperatura promedio: ' + str(temp))
