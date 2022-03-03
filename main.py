@@ -2,9 +2,7 @@ import random
 import influxdb_client
 from influxdb_client.client.write_api import SYNCHRONOUS
 import time
-import requests
-
-
+import telegram
 
 def send_data_idb(totality_lit, time_s):
     bucket = "Raspi"
@@ -26,28 +24,6 @@ def send_data_idb(totality_lit, time_s):
     print("Data sended to influx")
 
 
-
-
-
-def send_alert(litros, time, tempe):
-    requests.post('https://api.telegram.org/bot5225831499:AAH-0_bNem_7_fhM0exw1Mx_tWozVVjlU64/sendMessage',
-                  data={'chat_id': '@RgaderaBot', 'text': ('Litros gastados: ' + str(litros))})
-    requests.post('https://api.telegram.org/bot5225831499:AAH-0_bNem_7_fhM0exw1Mx_tWozVVjlU64/sendMessage',
-                  data={'chat_id': '@RgaderaBot', 'text': ('Tiempo de baño: ' + str(time))})
-    requests.post('https://api.telegram.org/bot5225831499:AAH-0_bNem_7_fhM0exw1Mx_tWozVVjlU64/sendMessage',
-                  data={'chat_id': '@RgaderaBot', 'text': ('Temperatura promedio: ' + str(tempe))})
-    print("Alerts sended")
-
-def alertsTele(bot_message):
-    bot_token = '5225831499:AAH-0_bNem_7_fhM0exw1Mx_tWozVVjlU64'
-    bot_chatid = '@RgaderaBot'
-    send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatid + '&parse_mode=Markdown&text=' + bot_message
-    response = requests.get(send_text)
-
-    return response.json()
-
-
-
 if __name__ == '__main__':
     j = 1
     time.sleep(1)
@@ -59,6 +35,9 @@ if __name__ == '__main__':
     totlit = 23
     timeshower = 25.4
     temp = 25.67
-    tests = alertsTele("Testing telegram bot")
-    print(tests)
-    #send_alert(totlit, timeshower, temp)
+
+    api_key = '5225831499:AAH-0_bNem_7_fhM0exw1Mx_tWozVVjlU64'
+    user_id = '@RgaderaBot'
+
+    bot = telegram.Bot(token=api_key)
+    bot.send_message(chat_id=user_id, text='USP-Python has started up!')
