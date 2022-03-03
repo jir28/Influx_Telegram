@@ -25,6 +25,16 @@ def send_data_idb(totality_lit, time_s):
     print("Data sended to influx")
 
 
+def send_alerts(lit,timeS,tempe):
+    api_key = '5225831499:AAH-0_bNem_7_fhM0exw1Mx_tWozVVjlU64'
+    user_id = '@RgaderaBot'
+
+    bot = telegram.Bot(token=api_key)
+    bot.send_message(chat_id=user_id, text='Litros: '+str(lit))
+    bot.send_message(chat_id=user_id, text='Tiempo: ' + str(timeS))
+    bot.send_message(chat_id=user_id, text='Temperatura promedio: ' + str(tempe))
+
+
 if __name__ == '__main__':
     j = 1
     time.sleep(1)
@@ -33,15 +43,9 @@ if __name__ == '__main__':
     times_shower = random.randint(25, 30)
     send_data_idb(tot_lit, times_shower)
 
-
     totlit = 23
     timeshower = 25.4
     temp = 25.67
+    send_alerts(totlit,timeshower,temp)
 
-    api_key = '5225831499:AAH-0_bNem_7_fhM0exw1Mx_tWozVVjlU64'
-    user_id = '@RgaderaBot'
 
-    bot = telegram.Bot(token=api_key)
-    bot.send_message(chat_id=user_id, text='Litros: '+str(totlit))
-    bot.send_message(chat_id=user_id, text='Tiempo: ' + str(timeshower))
-    bot.send_message(chat_id=user_id, text='Temperatura promedio: ' + str(temp))
