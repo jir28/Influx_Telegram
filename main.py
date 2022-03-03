@@ -5,6 +5,8 @@ import time
 import telegram
 
 
+
+
 def send_data_idb(totality_lit, time_s):
     bucket = "Raspi"
     org = "jirs28"
@@ -25,12 +27,16 @@ def send_data_idb(totality_lit, time_s):
     print("Data sended to influx")
 
 
-def send_alerts(lit,timeS,tempe):
+def send_alerts(lit, timeS, tempe):
     api_key = '5225831499:AAH-0_bNem_7_fhM0exw1Mx_tWozVVjlU64'
     user_id = '@RgaderaBot'
+    fechB = time.strftime("%x")
+    horaB = time.strftime("%X")
 
     bot = telegram.Bot(token=api_key)
-    bot.send_message(chat_id=user_id, text='Litros: '+str(lit))
+    msg = ('Reporte de uso de la regadera el dia: '+fechB, 'a la hora: '+horaB)
+    bot.send_message(chat_id=user_id, text=msg)
+    bot.send_message(chat_id=user_id, text='Litros: ' + str(lit))
     bot.send_message(chat_id=user_id, text='Tiempo: ' + str(timeS))
     bot.send_message(chat_id=user_id, text='Temperatura promedio: ' + str(tempe))
 
@@ -41,11 +47,10 @@ if __name__ == '__main__':
 
     tot_lit = random.randint(10, 20)
     times_shower = random.randint(25, 30)
-    send_data_idb(tot_lit, times_shower)
+    #send_data_idb(tot_lit, times_shower)
 
     totlit = 23
     timeshower = 25.4
     temp = 25.67
-    send_alerts(totlit,timeshower,temp)
-
+    send_alerts(totlit, timeshower, temp)
 
