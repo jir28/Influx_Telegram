@@ -33,6 +33,7 @@ if __name__ == '__main__':
     times_shower = random.randint(25, 30)
     send_data_idb(tot_lit, times_shower)
 
+
     totlit = 23
     timeshower = 25.4
     temp = 25.67
